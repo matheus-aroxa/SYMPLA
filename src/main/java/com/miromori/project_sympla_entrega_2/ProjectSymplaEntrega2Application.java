@@ -1,13 +1,19 @@
 package com.miromori.project_sympla_entrega_2;
 
-import org.springframework.boot.SpringApplication;
+import com.miromori.project_sympla_entrega_2.config.JavaFxApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class ProjectSymplaEntrega2Application {
 
+	private static ConfigurableApplicationContext springContext;
+
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectSymplaEntrega2Application.class, args);
+		JavaFxApplication.main(args);
 	}
 
+	public static ConfigurableApplicationContext getSpringContext() {
+		return springContext;
+	}
 }
