@@ -44,11 +44,6 @@ Thumbs.db
 .env
 *.env
 
-# Ignora arquivos de configuração local
-*.properties
-*.yml
-*.yaml
-
 # Ignora arquivos de banco de dados local
 *.db
 *.sqlite
