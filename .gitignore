@@ -1,0 +1,59 @@
+# Ignora arquivos compilados do Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignora diretórios de build e dependências
+/target/
+/bin/
+/build/
+/out/
+/.idea/
+/.vscode/
+
+# Ignora arquivos de configuração local
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*.log
+*.cache
+*.DS_Store
+
+# Ignora arquivos do Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Ignora arquivos de IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignora arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignora arquivos de log
+*.log
+
+# Ignora arquivos de ambiente
+.env
+*.env
+
+# Ignora arquivos de configuração local
+*.properties
+*.yml
+*.yaml
+
+# Ignora arquivos de banco de dados local
+*.db
+*.sqlite
+
+# Ignora arquivos de teste
+/test-results/
+/target/surefire-reports/
+/target/failsafe-reports/
