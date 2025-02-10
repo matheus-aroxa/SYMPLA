@@ -1,5 +1,7 @@
 package com.miromori.project_sympla_entrega_2.view;
 
+import com.miromori.project_sympla_entrega_2.controllers.EventController;
+import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import com.miromori.project_sympla_entrega_2.models.User;
 import javafx.application.Application;
@@ -15,6 +17,10 @@ public class SignUpForm extends Application {
 
     @Autowired
     UserController userController;
+    @Autowired
+    EventController eventController;
+    @Autowired
+    FeedbackController feedbackController;
     private Label signUpLabel;
     private Button confirmButton, backButton;
     private TextField fullNameTextField, emailTextField;
@@ -75,6 +81,8 @@ public class SignUpForm extends Application {
             stage.close();
             LoginForm loginForm = new LoginForm();
             loginForm.userController = this.userController;
+            loginForm.eventController = eventController;
+            loginForm.feedbackController = feedbackController;
             try {
                 loginForm.start(stage);
             } catch (Exception ex) {

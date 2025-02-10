@@ -1,5 +1,7 @@
 package com.miromori.project_sympla_entrega_2.view;
 
+import com.miromori.project_sympla_entrega_2.controllers.EventController;
+import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,8 +13,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MainScreenView extends Application{
+
     @Autowired
     UserController userController;
+
+    @Autowired
+    EventController eventController;
+
+    @Autowired
+    FeedbackController feedbackController;
+
     private Label goToLabel;
     private Button eventsButton, usersButton;
     private AnchorPane pane;
@@ -49,9 +59,9 @@ public class MainScreenView extends Application{
                     " -fx-font-family: sans-serif;" +
                     " -fx-font-weight: bold;");
 
-            eventsButton.setLayoutX((pane.getWidth() - eventsButton.getWidth())/2 - 35);
+            eventsButton.setLayoutX((pane.getWidth() - eventsButton.getWidth())/2 + 40);
             eventsButton.setLayoutY(150);
-            usersButton.setLayoutX((pane.getWidth() - usersButton.getWidth())/2 + 40);
+            usersButton.setLayoutX((pane.getWidth() - usersButton.getWidth())/2 - 35);
             usersButton.setLayoutY(150);
 
     }
@@ -80,6 +90,8 @@ public class MainScreenView extends Application{
 
     public void goToUsers(){
         UsersView usersView = new UsersView();
+        usersView.eventController = eventController;
+        usersView.feedbackController = feedbackController;
         usersView.userController = userController;
         try{
             usersView.start(stage);
@@ -90,7 +102,9 @@ public class MainScreenView extends Application{
 
     public void goToEvents(){
         EventsView eventsView = new EventsView();
+        eventsView.eventController = eventController;
         eventsView.userController = userController;
+        eventsView.feedbackController = feedbackController;
         try{
             eventsView.start(stage);
         } catch (Exception e){
