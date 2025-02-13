@@ -24,8 +24,8 @@ public class Event {
     @OneToMany
     private List<Feedback> feedbacks;
 
-    @ManyToMany(mappedBy = "inscriptions")
-    private Set<User> registered;
+    @OneToMany
+    private Set<Subscription> subscriptions;
 
     public Double getPrice() {
         return price;
@@ -83,12 +83,12 @@ public class Event {
         this.capacity = capacity;
     }
 
-    public Set<User> getRegistered() {
-        return registered;
+    public Set<Subscription> getSubscriptions() {
+        return subscriptions;
     }
 
-    public void setRegistered(Set<User> registered) {
-        this.registered = registered;
+    public void setSubscriptions(Set<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
     public List<Feedback> getFeedbacks() {

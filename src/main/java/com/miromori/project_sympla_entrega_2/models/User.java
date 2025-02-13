@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,14 +19,10 @@ public class User {
     private String name;
     private String password;
     private String email;
+    private String role;
 
-    @ManyToMany
-    @JoinTable(
-            name = "inscription",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "event_id")
-    )
-    private Set<Event> inscriptions;
+    @OneToMany
+    private Set<Subscription> subscriptionsId;
 
     public Long getId() {
         return id;
@@ -59,11 +56,19 @@ public class User {
         this.email = email;
     }
 
-    public Set<Event> getInscriptions() {
-        return inscriptions;
+    public Set<Subscription> getSubscriptionsId() {
+        return subscriptionsId;
     }
 
-    public void setInscriptions(Set<Event> inscriptions) {
-        this.inscriptions = inscriptions;
+    public void setSubscriptionsId(Set<Subscription> subscriptionsId) {
+        this.subscriptionsId = subscriptionsId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

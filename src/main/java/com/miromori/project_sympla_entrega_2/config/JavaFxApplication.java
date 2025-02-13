@@ -1,6 +1,7 @@
 package com.miromori.project_sympla_entrega_2.config;
 
 import com.miromori.project_sympla_entrega_2.ProjectSymplaEntrega2Application;
+import com.miromori.project_sympla_entrega_2.view.CreateUserView;
 import com.miromori.project_sympla_entrega_2.view.LoginForm;
 import com.miromori.project_sympla_entrega_2.view.MainScreenView;
 import javafx.application.Application;
@@ -21,10 +22,8 @@ public class JavaFxApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Obtém o bean LoginForm do contexto do Spring
-        LoginForm loginForm = springContext.getBean(LoginForm.class);
+        CreateUserView loginForm = springContext.getBean(CreateUserView.class);
         loginForm.start(primaryStage);
-//        MainScreenView loginForm = springContext.getBean(MainScreenView.class);
-//        loginForm.start(primaryStage);
     }
 
     @Override
