@@ -106,6 +106,13 @@ public class SignUpForm extends Application {
                 showAlert("Email Already Exist");
                 return;
             }
+            if(!password.matches("[a-zA-Z0-9]+$")){
+                showAlert("Invalid characters");
+                return;
+            }else if(password.length()<8){
+                showAlert("Password too short");
+                return;
+            }
 
 
             User user = new User();
