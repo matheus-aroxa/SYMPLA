@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -96,10 +93,23 @@ public class UserMenu extends Application {
             logout();
         });
 
-    }
+        table.setRowFactory(a -> {
+            TableRow<Event> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if( event.getClickCount() == 2 && !row.isEmpty() ) {
+                    Event selected = row.getItem();
+                    EventView view = new EventView();
+                    view.userController = userController;
+                    view.eventController = eventController;
+                    view.subscriptionsRepository = subscriptionsRepository;
+                    view.feedbackController = feedbackController;
+                    view.event = selected;
+                    view.start(stage);
+                }
+            });
+            return row;
+        });
 
-    public Stage getStage() {
-        return stage;
     }
 
     private void loadDataFromDatabase() {
@@ -158,6 +168,12 @@ public class UserMenu extends Application {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void showAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
