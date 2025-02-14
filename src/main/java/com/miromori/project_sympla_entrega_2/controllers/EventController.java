@@ -17,8 +17,8 @@ public class EventController {
     private EventRepository eventRepository;
 
     @GetMapping
-    public ResponseEntity<List<Event>> findAll(){
-        return ResponseEntity.ok(eventRepository.findAll());
+    public List<Event> findAll(){
+        return eventRepository.findAll();
     }
 
     @GetMapping("/{id}")
@@ -36,5 +36,9 @@ public class EventController {
         Event event = eventRepository.findById(id).orElse(null);
         eventRepository.deleteById(id);
         return ResponseEntity.ok(event);
+    }
+
+    public Optional<Event> findByName(String name){
+        return eventRepository.findByName(name);
     }
 }

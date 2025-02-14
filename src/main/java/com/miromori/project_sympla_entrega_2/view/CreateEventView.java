@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 @Component
 public class CreateEventView extends Application {
@@ -107,7 +108,7 @@ public class CreateEventView extends Application {
                 return;
             }
             createEvent();
-            showAlert("Event created with success");
+
         });
 
         backButton.setOnAction(e -> {
@@ -172,6 +173,12 @@ public class CreateEventView extends Application {
         capacity = Integer.parseInt(eventCapacity.getText());
         price = Double.parseDouble(eventPrice.getText());
 
+        Optional<Event> temp = eventController.findByName(name);
+        if(temp.isPresent()){
+            showAlert("Event already exists");
+            return;
+        }
+
         Event event = new Event();
         event.setDate(dateTime);
         event.setCapacity(capacity);
@@ -181,6 +188,7 @@ public class CreateEventView extends Application {
         event.setLocation(location);
 
         eventController.save(event);
+        showAlert("Event created with success");
     }
 
 }

@@ -5,6 +5,7 @@ import com.miromori.project_sympla_entrega_2.controllers.EventController;
 import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import com.miromori.project_sympla_entrega_2.models.User;
+import com.miromori.project_sympla_entrega_2.repositories.SubscriptionsRepository;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +22,8 @@ public class LoginForm extends Application {
     EventController eventController;
     @Autowired
     FeedbackController feedbackController;
+    @Autowired
+    SubscriptionsRepository subscriptionsRepository;
 
     private Label loginLabel;
     private AnchorPane pane;

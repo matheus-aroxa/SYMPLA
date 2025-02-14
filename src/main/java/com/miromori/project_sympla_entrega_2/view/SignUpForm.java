@@ -99,10 +99,14 @@ public class SignUpForm extends Application {
                 showAlert("Fields cannot be empty");
                 return;
             }
+            if(!verificaEmail(email)){
+                return;
+            }
             if(userController.findByEmail(email) != null){
                 showAlert("Email Already Exist");
                 return;
             }
+
 
             User user = new User();
             user.setEmail(email);
@@ -122,6 +126,21 @@ public class SignUpForm extends Application {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public boolean verificaEmail(String email){
+        boolean resultado;
+        int indicadorArroba = email.indexOf('@'); //tem arroba?
+        int indicadorPonto = email.lastIndexOf('.'); //e pelo meno um ponto?
+        if(indicadorArroba > 0 && indicadorPonto > indicadorArroba && indicadorPonto < email.length() - 1) {
+            //se tiver pelo menos 1 arroba, e mais pontos que arrobas, e a quantidade de pontos for menor que o tamanho do email, então ele é válido;
+            resultado = true;
+        }else{
+            //algum erro tem que aparecer na tela;
+            showAlert("Invalid Email");
+            resultado = false;
+        }
+        return resultado;
     }
 
 }
