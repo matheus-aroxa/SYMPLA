@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class EventViewer extends Application {
+public class UserMenu extends Application {
 
     @Autowired
     EventController eventController;
@@ -56,7 +56,7 @@ public class EventViewer extends Application {
         initListeners();
         loadDataFromDatabase();
 
-        Scene scene = new Scene(vBox, 300, 250);
+        Scene scene = new Scene(vBox, 400, 300);
         this.stage = stage;
         stage.setScene(scene);
         stage.setTitle("User menu");

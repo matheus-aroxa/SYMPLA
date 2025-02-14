@@ -131,12 +131,12 @@ public class LoginForm extends Application {
         }
 
 
-        MainScreenView mainScreenView = new MainScreenView();
-        mainScreenView.userController = userController;
-        mainScreenView.eventController = eventController;
-        mainScreenView.feedbackController = feedbackController;
+        UserMenu userMenu = new UserMenu();
+        userMenu.userController = userController;
+        userMenu.eventController = eventController;
+        userMenu.feedbackController = feedbackController;
         try{
-            mainScreenView.start(stage);
+            userMenu.start(stage);
         } catch (Exception e){
             e.printStackTrace();
         }

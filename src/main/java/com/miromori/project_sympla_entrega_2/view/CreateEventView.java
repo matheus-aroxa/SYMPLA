@@ -111,17 +111,17 @@ public class CreateEventView extends Application {
 
         });
 
-        backButton.setOnAction(e -> {
-            EventsView eventsView = new EventsView();
-            eventsView.userController = userController;
-            eventsView.eventController = eventController;
-            eventsView.feedbackController = feedbackController;
-            try {
-                eventsView.start(stage);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+//        backButton.setOnAction(e -> {
+//            EventsView eventsView = new EventsView();
+//            eventsView.userController = userController;
+//            eventsView.eventController = eventController;
+//            eventsView.feedbackController = feedbackController;
+//            try {
+//                eventsView.start(stage);
+//            } catch (Exception ex) {
+//                throw new RuntimeException(ex);
+//            }
+//        });
 
 
     }

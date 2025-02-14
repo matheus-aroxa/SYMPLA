@@ -1,7 +1,6 @@
 package com.miromori.project_sympla_entrega_2.config;
 
 import com.miromori.project_sympla_entrega_2.ProjectSymplaEntrega2Application;
-import com.miromori.project_sympla_entrega_2.view.EventViewer;
 import com.miromori.project_sympla_entrega_2.view.LoginForm;
 import javafx.application.Application;
 import javafx.stage.Stage;
