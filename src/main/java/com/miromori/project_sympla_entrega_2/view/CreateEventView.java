@@ -4,6 +4,7 @@ import com.miromori.project_sympla_entrega_2.controllers.EventController;
 import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import com.miromori.project_sympla_entrega_2.models.Event;
+import com.miromori.project_sympla_entrega_2.repositories.SubscriptionsRepository;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -27,6 +28,8 @@ public class CreateEventView extends Application {
     FeedbackController feedbackController;
     @Autowired
     UserController userController;
+    @Autowired
+    SubscriptionsRepository subscriptionsRepository;
 
     private Label eventLabel;
     private TextField eventName, eventDescription, eventLocation, eventCapacity, eventPrice;
@@ -111,17 +114,18 @@ public class CreateEventView extends Application {
 
         });
 
-//        backButton.setOnAction(e -> {
-//            EventsView eventsView = new EventsView();
-//            eventsView.userController = userController;
-//            eventsView.eventController = eventController;
-//            eventsView.feedbackController = feedbackController;
-//            try {
-//                eventsView.start(stage);
-//            } catch (Exception ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        });
+        backButton.setOnAction(e -> {
+            LoginForm loginForm = new LoginForm();
+            loginForm.userController = userController;
+            loginForm.eventController = eventController;
+            loginForm.feedbackController = feedbackController;
+            loginForm.subscriptionsRepository = subscriptionsRepository;
+            try {
+                loginForm.start(stage);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
 
     }

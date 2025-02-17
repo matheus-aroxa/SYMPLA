@@ -38,6 +38,7 @@ public class EventView extends Application {
     private HBox feedbackSubscribeBox, backButtonBox;
     private VBox eventDetailsBox, mainLayout;
     private Region spacer;
+    private Stage stage;
 
     private void initComponents() {
         nameLabel = new Label(event.getName());
@@ -63,11 +64,24 @@ public class EventView extends Application {
         mainLayout.setAlignment(Pos.TOP_CENTER);
     }
 
+    private void initListeners(){
+        backButton.setOnAction(e -> {
+            UserMenu userMenu = new UserMenu();
+            userMenu.eventController = eventController;
+            userMenu.feedbackController = feedbackController;
+            userMenu.userController = userController;
+            userMenu.subscriptionsRepository = subscriptionsRepository;
+            userMenu.start(stage);
+        });
+    }
+
     @Override
     public void start(Stage stage) {
         initComponents();
+        initListeners();
 
         Scene scene = new Scene(mainLayout, 400, 300);
+        this.stage = stage;
         stage.setTitle("Event view");
         stage.setScene(scene);
         stage.show();

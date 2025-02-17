@@ -130,16 +130,31 @@ public class LoginForm extends Application {
             return;
         }
 
+        String role = usuarioEncontrado.getRole();
 
-        UserMenu userMenu = new UserMenu();
-        userMenu.userController = userController;
-        userMenu.eventController = eventController;
-        userMenu.feedbackController = feedbackController;
-        try{
-            userMenu.start(stage);
-        } catch (Exception e){
-            e.printStackTrace();
+        if(role == null){
+            UserMenu userMenu = new UserMenu();
+            userMenu.userController = userController;
+            userMenu.eventController = eventController;
+            userMenu.feedbackController = feedbackController;
+            try{
+                userMenu.start(stage);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else if(role.equals("admin")){
+            CreateEventView event = new CreateEventView();
+            event.userController = userController;
+            event.eventController = eventController;
+            event.feedbackController = feedbackController;
+            try{
+                event.start(stage);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            return;
         }
+
     }
 
     public void signUp(){
