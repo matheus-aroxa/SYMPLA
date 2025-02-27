@@ -22,8 +22,8 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Event>> findById(@PathVariable Long id){
-        return ResponseEntity.ok(eventRepository.findById(id));
+    public Optional<Event> findById(@PathVariable Long id){
+        return eventRepository.findById(id);
     }
 
     @PostMapping

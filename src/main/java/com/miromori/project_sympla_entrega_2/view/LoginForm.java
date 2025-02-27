@@ -94,6 +94,7 @@ public class LoginForm extends Application {
             easterEggView.userController = userController;
             easterEggView.eventController = eventController;
             easterEggView.feedbackController = feedbackController;
+            easterEggView.subscriptionsRepository = subscriptionsRepository;
             try {
                 easterEggView.start(stage);
             } catch (Exception ex) {
@@ -133,10 +134,15 @@ public class LoginForm extends Application {
         String role = usuarioEncontrado.getRole();
 
         if(role == null){
+            User user = new User();
+            user.setEmail(email);
+            user.setId(userController.findByEmail(email).getId());
             UserMenu userMenu = new UserMenu();
+            userMenu.loggedUser = user;
             userMenu.userController = userController;
             userMenu.eventController = eventController;
             userMenu.feedbackController = feedbackController;
+            userMenu.subscriptionsRepository = subscriptionsRepository;
             try{
                 userMenu.start(stage);
             } catch (Exception e){
@@ -147,6 +153,7 @@ public class LoginForm extends Application {
             event.userController = userController;
             event.eventController = eventController;
             event.feedbackController = feedbackController;
+            event.subscriptionsRepository = subscriptionsRepository;
             try{
                 event.start(stage);
             } catch (Exception e){
@@ -162,6 +169,7 @@ public class LoginForm extends Application {
         createUserView.userController = this.userController;
         createUserView.eventController = eventController;
         createUserView.feedbackController = feedbackController;
+        createUserView.subscriptionsRepository = subscriptionsRepository;
 
         try {
             createUserView.start(this.stage);

@@ -3,6 +3,7 @@ package com.miromori.project_sympla_entrega_2.controllers;
 import com.miromori.project_sympla_entrega_2.models.Feedback;
 import com.miromori.project_sympla_entrega_2.models.User;
 import com.miromori.project_sympla_entrega_2.repositories.FeedbackRepository;
+import com.miromori.project_sympla_entrega_2.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,4 +39,11 @@ public class FeedbackController {
         feedbackRepository.deleteById(id);
         return ResponseEntity.ok(feedback);
     }
+
+    @GetMapping("/event/{eventId}")
+    public List<Feedback> findByEventId(@PathVariable Long eventId) {
+        return feedbackRepository.findByEventId(eventId);
+    }
+
+
 }

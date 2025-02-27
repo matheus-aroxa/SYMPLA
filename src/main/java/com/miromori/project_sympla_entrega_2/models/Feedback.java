@@ -11,7 +11,7 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comment;
-    private Long authorSubscription;
+    private Long userId;
 
     @ManyToOne
     private Event event;
@@ -36,16 +36,17 @@ public class Feedback {
         return event;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public void setEvent(Event event) {
         this.event = event;
     }
 
-    public Long getAuthorSubscription() {
-        return authorSubscription;
-    }
-
-    public void setAuthorSubscription(Long authorSubscription) {
-        this.authorSubscription = authorSubscription;
-    }
 }
 

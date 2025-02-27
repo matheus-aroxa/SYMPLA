@@ -3,6 +3,7 @@ package com.miromori.project_sympla_entrega_2.view;
 import com.miromori.project_sympla_entrega_2.controllers.EventController;
 import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
+import com.miromori.project_sympla_entrega_2.repositories.SubscriptionsRepository;
 import javafx.application.Application;
 
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ public class EasterEggView extends Application{
     EventController eventController;
     @Autowired
     FeedbackController feedbackController;
+    @Autowired
+    SubscriptionsRepository subscriptionsRepository;
     private AnchorPane pane;
     private Button backButton;
     Image image;
@@ -72,6 +75,7 @@ public class EasterEggView extends Application{
            loginForm.userController = userController;
            loginForm.eventController = eventController;
            loginForm.feedbackController = feedbackController;
+           loginForm.subscriptionsRepository = subscriptionsRepository;
             try {
                 loginForm.start(stage);
             } catch (Exception e) {

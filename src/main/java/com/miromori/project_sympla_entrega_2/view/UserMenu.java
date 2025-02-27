@@ -4,6 +4,7 @@ import com.miromori.project_sympla_entrega_2.controllers.EventController;
 import com.miromori.project_sympla_entrega_2.controllers.FeedbackController;
 import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import com.miromori.project_sympla_entrega_2.models.Event;
+import com.miromori.project_sympla_entrega_2.models.User;
 import com.miromori.project_sympla_entrega_2.repositories.SubscriptionsRepository;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -32,6 +33,7 @@ public class UserMenu extends Application {
     @Autowired
     SubscriptionsRepository subscriptionsRepository;
 
+    User loggedUser;
     private TableView<Event> table = new TableView<>();
     private TableColumn<Event, String> nameCol, dateCol, priceCol;
     private Button previousButton, nextButton, subscriptionsButton, logoutButton;
@@ -99,6 +101,7 @@ public class UserMenu extends Application {
                 if( event.getClickCount() == 2 && !row.isEmpty() ) {
                     Event selected = row.getItem();
                     EventView view = new EventView();
+                    view.loggedUser = loggedUser;
                     view.userController = userController;
                     view.eventController = eventController;
                     view.subscriptionsRepository = subscriptionsRepository;
@@ -109,6 +112,11 @@ public class UserMenu extends Application {
             });
             return row;
         });
+
+        subscriptionsButton.setOnAction(e -> {
+            showSubscriptions(loggedUser);
+        });
+
 
     }
 
@@ -174,6 +182,16 @@ public class UserMenu extends Application {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void showSubscriptions(User user){
+        SubscriptionsView subscriptionsView = new SubscriptionsView();
+        subscriptionsView.eventController = eventController;
+        subscriptionsView.subscriptionsRepository = subscriptionsRepository;
+        subscriptionsView.userController = userController;
+        subscriptionsView.feedbackController = feedbackController;
+        subscriptionsView.loggedUser = user;
+        subscriptionsView.start(stage);
     }
 }
 

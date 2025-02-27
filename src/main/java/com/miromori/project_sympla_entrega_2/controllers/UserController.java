@@ -42,4 +42,8 @@ public class UserController {
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public Optional<User> findUserByFeedback(Long feedbackId) {
+        return Optional.ofNullable(userRepository.findUserByFeedback(feedbackId));
+    }
 }
