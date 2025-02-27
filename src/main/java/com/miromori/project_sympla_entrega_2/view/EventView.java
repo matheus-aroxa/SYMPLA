@@ -6,6 +6,7 @@ import com.miromori.project_sympla_entrega_2.controllers.UserController;
 import com.miromori.project_sympla_entrega_2.models.Subscription;
 import com.miromori.project_sympla_entrega_2.models.User;
 import com.miromori.project_sympla_entrega_2.repositories.SubscriptionsRepository;
+import com.miromori.project_sympla_entrega_2.services.ServicoEmail;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -81,14 +82,14 @@ public class EventView extends Application {
 
         subscribeButton.setOnAction(e -> subscribeToEvent());
         feedbackButton.setOnAction(e -> {
-            FeedbacksView view = new FeedbacksView();
-            view.eventController = eventController;
-            view.feedbackController = feedbackController;
-            view.userController = userController;
-            view.subscriptionsRepository = subscriptionsRepository;
-            view.loggedUser = loggedUser;
-            view.selectedEvent = event;
-            view.start(stage);
+                FeedbacksView view = new FeedbacksView();
+                view.eventController = eventController;
+                view.feedbackController = feedbackController;
+                view.userController = userController;
+                view.subscriptionsRepository = subscriptionsRepository;
+                view.loggedUser = loggedUser;
+                view.selectedEvent = event;
+                view.start(stage);
         });
     }
 
@@ -100,7 +101,8 @@ public class EventView extends Application {
             subscription.setDate(LocalDateTime.now());
             subscription.setEventName(event.getName());
             subscriptionsRepository.save(subscription);
-            showAlert("Subscription successful!");
+            ServicoEmail.enviaConfirmacaoDoEmail(loggedUser.getEmail());
+            showAlert("Inscrição realizada com sucesso, um email foi enviado para voce");
         } else {
             showAlert("Error: User or Event not found.");
         }
